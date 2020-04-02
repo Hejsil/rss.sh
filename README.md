@@ -8,3 +8,5 @@ as a backend for other viewers to be built on. You can even write
 your own small viewer using `dmenu`, `rofi` or maybe just `fzf` like
 [I have done](https://github.com/Hejsil/dotfiles/blob/master/.local/script/rss-read.sh).
 
+![demo](demo.gif)
+
