@@ -48,10 +48,7 @@ read_dir="$cache_dir/read"; mkdir -p "$read_dir"
 config_dir="$global_config_dir/rss"; mkdir -p "$config_dir"
 url_config="$config_dir/urls"; touch -a "$url_config"
 
-while read -r line _; do
-    echo "$line" >&2
-    curl -s "$line" | sfeed | tr '\t' '\a'
-done < "$url_config" |
+cut -f1 "$url_config" | xargs curl -s | sfeed | tr '\t' '\a' |
 while IFS=$(printf '\a') read -r timestamp title link content content_type id author enclosure; do
     id=$(echo "$id" | sed 's#/#|#g')
     [ -z "$id" ] && id=$(echo "$link" | sed 's#/#|#g')
